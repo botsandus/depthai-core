@@ -480,7 +480,6 @@ target_link_libraries(${TARGET_CORE_NAME}
         XLink
         Threads::Threads
         BZip2::bz2
-        FP16::fp16
         archive_static
         spdlog::spdlog
         ZLIB::zlib
