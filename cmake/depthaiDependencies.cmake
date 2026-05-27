@@ -12,7 +12,12 @@ else()
     if(HUNTER_SKIP_PACKAGE_nlohmann_json)
         find_package(nlohmann_json)
     else()
-        hunter_add_package(nlohmann_json)
+        # Prefer a system/underlay nlohmann_json package when available.
+        # This avoids pulling an older Hunter recipe that can fail with newer CMake.
+        find_package(nlohmann_json QUIET CONFIG)
+        if(NOT nlohmann_json_FOUND)
+            hunter_add_package(nlohmann_json)
+        endif()
     endif()
     if(NOT DEPTHAI_XLINK_LOCAL)
         hunter_add_package(XLink)
