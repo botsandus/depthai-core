@@ -24,7 +24,6 @@ else()
         FetchContent_Declare(
             xlink_src
             URL "https://github.com/luxonis/XLink/archive/160c6c918c07e28a6a8c5c080a257f7619223304.tar.gz"
-            URL_HASH "SHA1=78fb38f212fa49029aff24c669a39648d9b4e68b"
         )
         FetchContent_GetProperties(xlink_src)
         if(NOT xlink_src_POPULATED)
