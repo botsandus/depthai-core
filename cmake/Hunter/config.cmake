@@ -11,6 +11,7 @@ hunter_config(
     CMAKE_ARGS
         CMAKE_POLICY_VERSION_MINIMUM=3.5
         XLINK_ENABLE_LIBUSB=${DEPTHAI_ENABLE_LIBUSB}
+        XLINK_LIBUSB_SYSTEM=ON
 )
 
 hunter_config(
