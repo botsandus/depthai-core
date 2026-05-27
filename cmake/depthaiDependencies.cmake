@@ -34,7 +34,6 @@ else()
         set(XLINK_LIBUSB_SYSTEM ON CACHE BOOL "" FORCE)
     endif()
     hunter_add_package(BZip2)
-    hunter_add_package(libarchive-luxonis)
     hunter_add_package(spdlog)
     hunter_add_package(ZLIB)
     if(DEPTHAI_ENABLE_BACKWARD)
@@ -59,8 +58,7 @@ if(NOT CONFIG_MODE OR (CONFIG_MODE AND NOT DEPTHAI_SHARED_LIBS))
     find_package(BZip2 ${_QUIET} CONFIG REQUIRED)
 
     # libarchive for firmware packages
-    find_package(archive_static ${_QUIET} CONFIG REQUIRED)
-    find_package(lzma ${_QUIET} CONFIG REQUIRED)
+    find_package(LibArchive ${_QUIET} REQUIRED)
     # ZLIB for compressing Apps
     find_package(ZLIB CONFIG REQUIRED)
 

@@ -480,7 +480,7 @@ target_link_libraries(${TARGET_CORE_NAME}
         XLink
         Threads::Threads
         BZip2::bz2
-        archive_static
+        LibArchive::LibArchive
         spdlog::spdlog
         ZLIB::zlib
         ghcFilesystem::ghc_filesystem
