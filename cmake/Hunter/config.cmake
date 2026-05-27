@@ -9,6 +9,7 @@ hunter_config(
     URL "https://github.com/luxonis/XLink/archive/2b517e1cb1ca77bea17679f9fdeb739812431174.tar.gz"
     SHA1 "fa7eeb46abeb97626dad923b7733899198284587"
     CMAKE_ARGS
+        CMAKE_POLICY_VERSION_MINIMUM=3.5
         XLINK_ENABLE_LIBUSB=${DEPTHAI_ENABLE_LIBUSB}
 )
 
