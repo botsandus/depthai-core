@@ -20,7 +20,19 @@ else()
         endif()
     endif()
     if(NOT DEPTHAI_XLINK_LOCAL)
-        hunter_add_package(XLink)
+        include(FetchContent)
+        FetchContent_Declare(
+            xlink_src
+            URL "https://github.com/luxonis/XLink/archive/160c6c918c07e28a6a8c5c080a257f7619223304.tar.gz"
+            URL_HASH "SHA1=78fb38f212fa49029aff24c669a39648d9b4e68b"
+        )
+        FetchContent_GetProperties(xlink_src)
+        if(NOT xlink_src_POPULATED)
+            FetchContent_Populate(xlink_src)
+        endif()
+        set(DEPTHAI_XLINK_LOCAL "${xlink_src_SOURCE_DIR}")
+        set(XLINK_ENABLE_LIBUSB ${DEPTHAI_ENABLE_LIBUSB} CACHE BOOL "" FORCE)
+        set(XLINK_LIBUSB_SYSTEM ON CACHE BOOL "" FORCE)
     endif()
     hunter_add_package(BZip2)
     hunter_add_package(FP16)
