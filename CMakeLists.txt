@@ -481,6 +481,7 @@ target_link_libraries(${TARGET_CORE_NAME}
         Threads::Threads
         BZip2::bz2
         LibArchive::LibArchive
+        fp16::fp16
         spdlog::spdlog
         ZLIB::zlib
         ghcFilesystem::ghc_filesystem

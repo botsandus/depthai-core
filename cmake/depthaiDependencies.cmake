@@ -58,6 +58,8 @@ if(NOT CONFIG_MODE OR (CONFIG_MODE AND NOT DEPTHAI_SHARED_LIBS))
     find_package(BZip2 ${_QUIET} CONFIG REQUIRED)
 
     # libarchive for firmware packages
+    # FP16 for float16 conversions (system library)
+    find_package(fp16 ${_QUIET} REQUIRED)
     find_package(LibArchive ${_QUIET} REQUIRED)
     # ZLIB for compressing Apps
     find_package(ZLIB CONFIG REQUIRED)
