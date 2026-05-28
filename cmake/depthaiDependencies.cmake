@@ -57,9 +57,29 @@ if(NOT CONFIG_MODE OR (CONFIG_MODE AND NOT DEPTHAI_SHARED_LIBS))
     # BZip2 (for bspatch)
     find_package(BZip2 ${_QUIET} CONFIG REQUIRED)
 
+    # FP16 for float16 conversions.
+    # Ubuntu's libfp16-dev provides headers but may not provide fp16Config.cmake,
+    # so fall back to header discovery and create a compatible imported target.
+    find_package(fp16 CONFIG QUIET)
+    if(TARGET fp16 AND NOT TARGET fp16::fp16)
+        add_library(fp16::fp16 ALIAS fp16)
+    endif()
+    if(NOT TARGET fp16::fp16)
+        find_path(DEPTHAI_FP16_INCLUDE_DIR
+            NAMES fp16/fp16.h
+        )
+        if(NOT DEPTHAI_FP16_INCLUDE_DIR)
+            message(FATAL_ERROR
+                "Unable to find fp16. Install libfp16-dev or provide fp16Config.cmake"
+            )
+        endif()
+        add_library(fp16::fp16 INTERFACE IMPORTED)
+        set_target_properties(fp16::fp16 PROPERTIES
+            INTERFACE_INCLUDE_DIRECTORIES "${DEPTHAI_FP16_INCLUDE_DIR}"
+        )
+    endif()
+
     # libarchive for firmware packages
-    # FP16 for float16 conversions (system library)
-    find_package(fp16 ${_QUIET} REQUIRED)
     find_package(LibArchive ${_QUIET} REQUIRED)
     # ZLIB for compressing Apps
     find_package(ZLIB CONFIG REQUIRED)
